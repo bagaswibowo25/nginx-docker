@@ -7,13 +7,11 @@ pipeline {
             }
         }
         stage('Test Image') {
+            agent {
+                docker { image 'bagas25/nginx-docker:$BUILD_NUMBER'}
+            }
             steps {
-                script {
-                    def nginx = docker.image('bagas25/nginx-docker:$BUILD_NUMBER')
-                    nginx.inside {
-                        sh 'nginx -t'
-                    }
-                }
+                sh 'cat /etc/os-release'
             }
         }
     }
