@@ -11,7 +11,7 @@ pipeline {
                 docker { image 'bagas25/nginx-docker:$BUILD_NUMBER'}
             }
             steps {
-                sh 'cat /etc/os-release'
+                sh 'nginx -t'
             }
         }
     }
