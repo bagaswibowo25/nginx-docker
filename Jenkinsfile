@@ -7,11 +7,13 @@ pipeline {
             }
         }
         stage('Test Image') {
-            agent {
-                docker {image 'bagas25/nginx-docker:$BUILD_NUMBER'}
-            }
             steps {
-                sh 'pwd'
+                script {
+                    def nginx = docker.image('bagas25/nginx-docker:$BUILD_NUMBER')
+                    nginx.inside {
+                        sh 'curl localhost'
+                    }
+                }
             }
         }
     }
