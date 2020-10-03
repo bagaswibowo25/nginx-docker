@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('check commit') {
             steps {
-                sh 'echo env.GIT_COMMIT'
+                sh 'echo "git_commit=$GIT_COMMIT"'
             }
         }
     }
