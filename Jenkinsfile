@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo $WORKSPACE'
+                sh 'docker build -t bagas25/nginx-docker:$BUILD_NUMBER .'
             }
         }
     }
