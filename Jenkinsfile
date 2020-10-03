@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test Image') {
             agent {
-                docker {Image bagas25/nginx-docker:$BUILD_NUMBER}
+                docker {image 'bagas25/nginx-docker:$BUILD_NUMBER'}
             }
             steps {
                 sh 'curl localhost'
