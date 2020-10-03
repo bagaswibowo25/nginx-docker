@@ -3,7 +3,14 @@ pipeline {
     stages {
         stage('check commit') {
             steps {
-                sh 'echo "git_commit=$GIT_COMMIT"'
+                def remote = [:]
+                remote.name = 'dev'
+                remote.host = 'dev.machine.me'
+                remote.user = 'me'
+                remote.password = 'letmein'
+                remote.allowAnyHosts = true
+                writeFile file: 'abc.sh', text: 'ls -lrt'
+                sshCommand remote: remote, command: "ls -lrt"
             }
         }
     }
