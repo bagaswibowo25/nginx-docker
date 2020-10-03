@@ -1,17 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('check commit') {
-            steps {
-                def remote = [:]
-                remote.name = 'dev'
-                remote.host = 'dev.machine.me'
-                remote.user = 'me'
-                remote.password = 'letmein'
-                remote.allowAnyHosts = true
-                writeFile file: 'abc.sh', text: 'ls -lrt'
-                sshCommand remote: remote, command: "ls -lrt"
-            }
+        node {
+        def remote = [:]
+        remote.name = 'dev'
+        remote.host = 'dev.machine.me'
+        remote.user = 'me'
+        remote.password = 'letmein'
+        remote.allowAnyHosts = true
+        stage('Remote SSH') {
+            sshCommand remote: remote, command: "ls -lrt"
+            sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
         }
     }
 }
