@@ -24,7 +24,7 @@ pipeline {
                 script {
                     def remote = [name: 'dev', host: 'dev.machine.me', user: 'me', password: 'letmein', allowAnyHosts: true]
                     sshCommand remote: remote, command: "docker pull bagas25/nginx-docker:$BUILD_NUMBER"
-                    sshCommand remote: remote, command: "docker run -d -p 8082:80 -v nginx-volume:/usr/share/nginx/html bagas25/nginx-docker:$BUILD_NUMBER"
+                    sshCommand remote: remote, command: "docker run -d -p 8888:80 -v nginx-volume:/usr/share/nginx/html bagas25/nginx-docker:$BUILD_NUMBER"
                 }
             }
         }
