@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t bagas25/nginx-docker-dev:$BUILD_NUMBER .'
+                sh 'docker build -t bagas25/nginx-docker-dev:$BUILD_NUMBER --no-cache .'
             }
         }
         stage('Test Run Image') {
