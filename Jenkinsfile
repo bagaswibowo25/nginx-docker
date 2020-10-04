@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Test Run Image') {
             steps {
-                sh 'docker run -d --name nginx-run-$BUILD_NUMBER -p 8888:80 bagas25/nginx-docker:$BUILD_NUMBER'
-                sh 'curl localhost'
+                sh 'docker run -d --name nginx-run-$BUILD_NUMBER -p 80$BUILD_NUMBER:80 bagas25/nginx-docker:$BUILD_NUMBER'
+                sh 'curl localhost:80$BUILD_NUMBER'
                 sh 'docker container rm test-run --force'
             }
         }
