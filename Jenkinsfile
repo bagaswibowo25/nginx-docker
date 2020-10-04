@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'docker run -d --name nginx-run-$BUILD_NUMBER -p 80$BUILD_NUMBER:80 bagas25/nginx-docker:$BUILD_NUMBER'
                 sh 'curl localhost:80$BUILD_NUMBER'
-                sh 'docker container rm test-run --force'
+                sh 'docker container rm nginx-run-$BUILD_NUMBER --force'
             }
         }
         stage('Push Image') {
